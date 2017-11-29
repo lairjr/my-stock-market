@@ -1,4 +1,4 @@
 import { createStore } from 'redux';
-import share from './share';
+import share from './Share';
 
 export default createStore(share.reducer);
