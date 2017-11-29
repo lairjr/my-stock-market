@@ -1,3 +1,4 @@
 import { createStore } from 'redux';
+import share from './share';
 
-export default createStore(state => state);
+export default createStore(share.reducer);
