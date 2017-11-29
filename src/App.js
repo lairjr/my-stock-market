@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Provider } from 'react-redux';
-import store from './store';
+import store from './configureStore';
 import ShareList from './Share/List';
 
 class App extends Component {
