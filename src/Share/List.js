@@ -15,4 +15,10 @@ const List = () => (
   </div>
 );
 
-export default connect(state => state)(List);
+export const mapStateToProps = ({ shares }) => {
+  return {
+    shares
+  };
+};
+
+export default connect(mapStateToProps)(List);
