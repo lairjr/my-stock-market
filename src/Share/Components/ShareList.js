@@ -4,7 +4,7 @@ import ShareCard from './ShareCard';
 
 const ShareList = ({ shares }) => (
   <div>
-    { shares.map(share => <ShareCard name={share.name} />)}
+    { shares.map(share => <ShareCard name={share.name} key={share.id} />)}
   </div>
 );
 
