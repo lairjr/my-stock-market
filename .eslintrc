@@ -1,3 +1,21 @@
 {
-  "extends": "react-app"
+  "extends": "airbnb",
+  "plugins": [
+    "react",
+    "jsx-a11y",
+    "import",
+    "fp"
+  ],
+  "env": {
+    "jest": true,
+    "browser": true
+  },
+  "rules": {
+    "react/jsx-filename-extension": [1, { "extensions": [".test.js",".js"] }],
+    "fp/no-mutating-methods": ["error", {
+      "allowedObjects": ['_']
+    }],
+    "fp/no-mutating-assign": "error",
+    "fp/no-delete": "error"
+  }
 }

@@ -1,6 +1,6 @@
 import React from 'react';
-import ShareList from './ShareList';
 import { shallow } from 'enzyme';
+import ShareList from './ShareList';
 
 describe('ShareList', () => {
   it('renders ShareCard for each share', () => {

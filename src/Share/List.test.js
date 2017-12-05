@@ -1,6 +1,6 @@
-import { List, mapStateToProps } from './List';
 import { shallow } from 'enzyme';
 import React from 'react';
+import { List, mapStateToProps } from './List';
 
 describe('List', () => {
   it('renders a share list', () => {

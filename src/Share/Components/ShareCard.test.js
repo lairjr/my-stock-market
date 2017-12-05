@@ -1,6 +1,6 @@
 import React from 'react';
-import ShareCard from './ShareCard';
 import { shallow } from 'enzyme';
+import ShareCard from './ShareCard';
 
 describe('ShareCard', () => {
   it('passes name to CardHeader title', () => {
