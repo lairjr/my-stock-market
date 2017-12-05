@@ -3,11 +3,11 @@ import { shallow } from 'enzyme';
 import React from 'react';
 
 describe('List', () => {
-  it('renders share name', () => {
+  it('renders a share list', () => {
     const shares = [{ name: 'Some share' }];
     const list = shallow(<List shares={shares} />);
 
-    expect(list.text()).toContain('Some share');
+    expect(list.find('ShareList').prop('shares')).toBe(shares);
   });
 });
 

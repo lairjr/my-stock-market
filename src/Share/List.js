@@ -1,11 +1,10 @@
 import { connect } from 'react-redux';
 import React from 'react';
+import ShareList from './Components/ShareList';
 import '../App.css';
 
 export const List = ({ shares }) => (
-  <div>
-    {shares[0].name}
-  </div>
+  <ShareList shares={shares} />
 );
 
 export const mapStateToProps = ({ shares }) => {
