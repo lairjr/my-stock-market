@@ -9,6 +9,24 @@ describe('List', () => {
 
     expect(list.find('ShareList').prop('shares')).toBe(shares);
   });
+
+  describe('handleDialogOpen', () => {
+    it('sets the state open to true', () => {
+      const list = shallow(<List shares={[]} />);
+
+      list.instance().handleDialogOpen();
+      expect(list.state('open')).toBe(true);
+    });
+  });
+
+  describe('handleDialogClose', () => {
+    it('sets the state open to true', () => {
+      const list = shallow(<List shares={[]} />);
+
+      list.instance().handleDialogClose();
+      expect(list.state('open')).toBe(false);
+    });
+  });
 });
 
 describe('mapStateToProps', () => {

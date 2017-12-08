@@ -2,9 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import MaterialDialog from 'material-ui/Dialog';
 
-const Dialog = ({ isOpen }) => (
+const ShareDialog = ({ isOpen }) => (
   <MaterialDialog
-    title="Share Info"
+    title="New share"
     modal={false}
     open={isOpen}
   >
@@ -12,8 +12,8 @@ const Dialog = ({ isOpen }) => (
   </MaterialDialog>
 );
 
-Dialog.propTypes = {
+ShareDialog.propTypes = {
   isOpen: PropTypes.bool.isRequired,
 };
 
-export default Dialog;
+export default ShareDialog;

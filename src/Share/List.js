@@ -1,12 +1,37 @@
 import { connect } from 'react-redux';
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import FloatingActionButton from 'material-ui/FloatingActionButton';
+import ContentAdd from 'material-ui/svg-icons/content/add';
 import ShareList from './Components/ShareList';
+import ShareDialog from './Components/ShareDialog';
 import '../App.css';
 
-export const List = ({ shares }) => (
-  <ShareList shares={shares} />
-);
+export class List extends Component {
+  state = {
+    open: false,
+  };
+
+  handleDialogOpen = () => {
+    this.setState({ open: true });
+  };
+
+  handleDialogClose = () => {
+    this.setState({ open: false });
+  };
+
+  render() {
+    return (
+      <div>
+        <ShareList shares={this.props.shares} />
+        <FloatingActionButton>
+          <ContentAdd onClick={this.handleDialogOpen} />
+        </FloatingActionButton>
+        <ShareDialog isOpen={this.state.open} />
+      </div>
+    );
+  }
+}
 
 List.defaultProps = {
   shares: [],
