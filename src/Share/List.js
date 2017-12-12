@@ -1,10 +1,12 @@
 import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import FloatingActionButton from 'material-ui/FloatingActionButton';
 import ContentAdd from 'material-ui/svg-icons/content/add';
 import ShareList from './Components/ShareList';
 import ShareDialog from './Components/ShareDialog';
+import * as actionsCreators from './actionsCreators';
 import '../App.css';
 
 export class List extends Component {
@@ -47,4 +49,8 @@ export const mapStateToProps = ({ shares }) => ({
   shares,
 });
 
-export default connect(mapStateToProps)(List);
+export const mapDispatchToProps = dispatch => (
+  bindActionCreators(actionsCreators, dispatch)
+);
+
+export default connect(mapStateToProps, mapDispatchToProps)(List);

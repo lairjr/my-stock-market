@@ -1,6 +1,7 @@
 import { shallow } from 'enzyme';
 import React from 'react';
-import { List, mapStateToProps } from './List';
+import * as redux from 'redux';
+import { List, mapDispatchToProps, mapStateToProps } from './List';
 
 describe('List', () => {
   it('renders a share list', () => {
@@ -35,5 +36,16 @@ describe('mapStateToProps', () => {
     const result = mapStateToProps({ shares });
 
     expect(result.shares).toBe(shares);
+  });
+});
+
+describe('mapDispatchToProps', () => {
+  it('calls and returns bindActionCreators', () => {
+    const dispatch = jest.fn();
+    redux.bindActionCreators = jest.fn().mockImplementation(() => 'mock');
+    const result = mapDispatchToProps(dispatch);
+
+    expect(redux.bindActionCreators.mock.calls[0][1]).toBe(dispatch);
+    expect(result).toBe('mock');
   });
 });
