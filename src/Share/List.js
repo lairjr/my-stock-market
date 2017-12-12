@@ -29,7 +29,11 @@ export class List extends Component {
         <FloatingActionButton>
           <ContentAdd onClick={this.handleDialogOpen} />
         </FloatingActionButton>
-        <ShareDialog isOpen={this.state.open} />
+        <ShareDialog
+          isOpen={this.state.open}
+          onCancel={this.handleDialogClose}
+          onSubmit={this.props.addShare}
+        />
       </div>
     );
   }
@@ -40,6 +44,7 @@ List.defaultProps = {
 };
 
 List.propTypes = {
+  addShare: PropTypes.func.isRequired,
   shares: PropTypes.arrayOf(PropTypes.shape({
     name: PropTypes.string.isRequired,
   })),

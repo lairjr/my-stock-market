@@ -5,15 +5,31 @@ import { List, mapDispatchToProps, mapStateToProps } from './List';
 
 describe('List', () => {
   it('renders a share list', () => {
+    const addShare = jest.fn();
     const shares = [{ name: 'Some share' }];
-    const list = shallow(<List shares={shares} />);
+    const list = shallow(<List {...{ addShare, shares }} />);
 
     expect(list.find('ShareList').prop('shares')).toBe(shares);
   });
 
+  it('passes handleDialogClose to onCancel for dialog', () => {
+    const addShare = jest.fn();
+    const list = shallow(<List {...{ addShare }} />);
+
+    expect(list.find('ShareDialog').prop('onCancel')).toBe(list.instance().handleDialogClose);
+  });
+
+  it('passes handleDialogClose to onCancel for dialog', () => {
+    const addShare = jest.fn();
+    const list = shallow(<List {...{ addShare }} />);
+
+    expect(list.find('ShareDialog').prop('onSubmit')).toBe(addShare);
+  });
+
   describe('handleDialogOpen', () => {
     it('sets the state open to true', () => {
-      const list = shallow(<List shares={[]} />);
+      const addShare = jest.fn();
+      const list = shallow(<List {...{ addShare }} />);
 
       list.instance().handleDialogOpen();
       expect(list.state('open')).toBe(true);
@@ -22,7 +38,8 @@ describe('List', () => {
 
   describe('handleDialogClose', () => {
     it('sets the state open to true', () => {
-      const list = shallow(<List shares={[]} />);
+      const addShare = jest.fn();
+      const list = shallow(<List {...{ addShare }} />);
 
       list.instance().handleDialogClose();
       expect(list.state('open')).toBe(false);

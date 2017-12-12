@@ -29,6 +29,8 @@ const ShareDialog = ({ isOpen, onCancel, onSubmit }) => {
   );
 };
 
+ShareDialog.displayName = 'ShareDialog';
+
 ShareDialog.defaultProps = {
   isOpen: false,
   onCancel: () => {},
