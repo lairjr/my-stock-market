@@ -19,11 +19,19 @@ describe('List', () => {
     expect(list.find('ShareDialog').prop('onCancel')).toBe(list.instance().handleDialogClose);
   });
 
-  it('passes handleDialogClose to onCancel for dialog', () => {
+  it('passes addShare to onFormSubmit for dialog', () => {
     const addShare = jest.fn();
     const list = shallow(<List {...{ addShare }} />);
 
-    expect(list.find('ShareDialog').prop('onSubmit')).toBe(addShare);
+    expect(list.find('ShareDialog').prop('onFormSubmit')).toBe(addShare);
+  });
+
+  it('passes a function which calls submit func prop', () => {
+    const submit = jest.fn();
+    const list = shallow(<List {...{ submit }} />);
+
+    list.find('ShareDialog').prop('onSubmit')();
+    expect(submit).toBeCalled();
   });
 
   describe('handleDialogOpen', () => {

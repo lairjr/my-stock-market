@@ -4,6 +4,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import FloatingActionButton from 'material-ui/FloatingActionButton';
 import ContentAdd from 'material-ui/svg-icons/content/add';
+import { submit } from 'redux-form';
 import ShareList from './Components/ShareList';
 import ShareDialog from './Components/ShareDialog';
 import * as actionsCreators from './actionsCreators';
@@ -32,7 +33,8 @@ export class List extends Component {
         <ShareDialog
           isOpen={this.state.open}
           onCancel={this.handleDialogClose}
-          onSubmit={this.props.addShare}
+          onSubmit={() => this.props.submit('addShare')}
+          onFormSubmit={this.props.addShare}
         />
       </div>
     );
@@ -40,14 +42,17 @@ export class List extends Component {
 }
 
 List.defaultProps = {
+  addShare: () => {},
   shares: [],
+  submit: () => {},
 };
 
 List.propTypes = {
-  addShare: PropTypes.func.isRequired,
+  addShare: PropTypes.func,
   shares: PropTypes.arrayOf(PropTypes.shape({
     name: PropTypes.string.isRequired,
   })),
+  submit: PropTypes.func,
 };
 
 export const mapStateToProps = ({ share }) => ({
@@ -55,7 +60,7 @@ export const mapStateToProps = ({ share }) => ({
 });
 
 export const mapDispatchToProps = dispatch => (
-  bindActionCreators(actionsCreators, dispatch)
+  bindActionCreators({ ...actionsCreators, submit }, dispatch)
 );
 
 export default connect(mapStateToProps, mapDispatchToProps)(List);
