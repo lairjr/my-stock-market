@@ -13,7 +13,10 @@ const shareReducer = (state = initialState, { type, payload }) => {
       return {
         shares: [
           ...state.shares,
-          payload,
+          {
+            id: state.shares.length + 1,
+            ...payload,
+          },
         ],
       };
     }
