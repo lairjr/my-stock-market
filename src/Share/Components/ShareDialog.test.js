@@ -1,6 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import ShareDialog from './ShareDialog';
+import AddShare from '../Forms/AddShare';
 
 describe('ShareDialog', () => {
   it('passes isOpen to material dialog', () => {
@@ -23,5 +24,12 @@ describe('ShareDialog', () => {
     const secondAction = dialog.prop('actions')[1];
 
     expect(secondAction.props.onClick).toBe(onSubmit);
+  });
+
+  it('passes onFormSubmit to add share form', () => {
+    const onFormSubmit = jest.fn();
+    const dialog = shallow(<ShareDialog onFormSubmit={onFormSubmit} />);
+
+    expect(dialog.find(AddShare).prop('onSubmit')).toBe(onFormSubmit);
   });
 });

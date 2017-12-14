@@ -4,7 +4,9 @@ import FlatButton from 'material-ui/FlatButton';
 import MaterialDialog from 'material-ui/Dialog';
 import AddShare from '../Forms/AddShare';
 
-const ShareDialog = ({ isOpen, onCancel, onSubmit }) => {
+const ShareDialog = ({
+  isOpen, onCancel, onSubmit, onFormSubmit,
+}) => {
   const actions = [
     <FlatButton
       label="Cancel"
@@ -25,7 +27,7 @@ const ShareDialog = ({ isOpen, onCancel, onSubmit }) => {
       open={isOpen}
       actions={actions}
     >
-      <AddShare />
+      <AddShare onSubmit={onFormSubmit} />
     </MaterialDialog>
   );
 };
@@ -36,12 +38,14 @@ ShareDialog.defaultProps = {
   isOpen: false,
   onCancel: () => {},
   onSubmit: () => {},
+  onFormSubmit: () => {},
 };
 
 ShareDialog.propTypes = {
   isOpen: PropTypes.bool,
   onCancel: PropTypes.func,
   onSubmit: PropTypes.func,
+  onFormSubmit: PropTypes.func,
 };
 
 export default ShareDialog;
