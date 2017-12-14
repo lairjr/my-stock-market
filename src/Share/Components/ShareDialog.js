@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import FlatButton from 'material-ui/FlatButton';
 import MaterialDialog from 'material-ui/Dialog';
+import AddShare from '../Forms/AddShare';
 
 const ShareDialog = ({ isOpen, onCancel, onSubmit }) => {
   const actions = [
@@ -24,7 +25,7 @@ const ShareDialog = ({ isOpen, onCancel, onSubmit }) => {
       open={isOpen}
       actions={actions}
     >
-       Open a Date Picker dialog from within a dialog.
+      <AddShare />
     </MaterialDialog>
   );
 };
