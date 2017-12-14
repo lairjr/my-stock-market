@@ -49,10 +49,10 @@ describe('List', () => {
 
 describe('mapStateToProps', () => {
   it('maps shares', () => {
-    const shares = ['some shares'];
-    const result = mapStateToProps({ shares });
+    const share = { shares: ['some shares'] };
+    const result = mapStateToProps({ share });
 
-    expect(result.shares).toBe(shares);
+    expect(result.shares).toBe(share.shares);
   });
 });
 

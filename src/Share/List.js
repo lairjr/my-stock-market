@@ -50,8 +50,8 @@ List.propTypes = {
   })),
 };
 
-export const mapStateToProps = ({ shares }) => ({
-  shares,
+export const mapStateToProps = ({ share }) => ({
+  shares: share.shares,
 });
 
 export const mapDispatchToProps = dispatch => (

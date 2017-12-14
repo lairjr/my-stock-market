@@ -1,4 +1,10 @@
-import { createStore } from 'redux';
+import { createStore, combineReducers } from 'redux';
+import { reducer as formReducer } from 'redux-form';
 import share from './Share';
 
-export default createStore(share.reducer);
+const rootReducer = combineReducers({
+  share: share.reducer,
+  form: formReducer,
+});
+
+export default createStore(rootReducer);
