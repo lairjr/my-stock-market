@@ -1,7 +1,7 @@
 import { shallow } from 'enzyme';
 import React from 'react';
 import * as redux from 'redux';
-import { List, mapDispatchToProps, mapStateToProps } from './List';
+import { List, mapDispatchToProps, mapStateToProps, mergeProps } from './List';
 
 describe('List', () => {
   it('renders a share list', () => {
@@ -26,12 +26,11 @@ describe('List', () => {
     expect(list.find('ShareDialog').prop('onFormSubmit')).toBe(addShare);
   });
 
-  it('passes a function which calls submit func prop', () => {
-    const submit = jest.fn();
-    const list = shallow(<List {...{ submit }} />);
+  it('passes submitForm to onSubmit for dialog', () => {
+    const submitForm = jest.fn();
+    const list = shallow(<List {...{ submitForm }} />);
 
-    list.find('ShareDialog').prop('onSubmit')();
-    expect(submit).toBeCalled();
+    expect(list.find('ShareDialog').prop('onSubmit')).toBe(submitForm);
   });
 
   describe('handleDialogOpen', () => {
@@ -72,5 +71,25 @@ describe('mapDispatchToProps', () => {
 
     expect(redux.bindActionCreators.mock.calls[0][1]).toBe(dispatch);
     expect(result).toBe('mock');
+  });
+});
+
+describe('mergeProps', () => {
+  it('merges submit on submitForm', () => {
+    const dispatchProps = { submit: jest.fn() };
+    const result = mergeProps({}, dispatchProps);
+
+    result.submitForm();
+
+    expect(dispatchProps.submit.mock.calls[0][0]).toBe('addShare');
+  });
+
+  it('keeps stateProps and dispatchProps in result', () => {
+    const stateProps = { someStateProp: 'some value' };
+    const dispatchProps = { submit: jest.fn() };
+    const result = mergeProps(stateProps, dispatchProps);
+
+    expect(result).toEqual(expect.objectContaining(stateProps));
+    expect(result).toEqual(expect.objectContaining(dispatchProps));
   });
 });

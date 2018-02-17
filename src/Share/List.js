@@ -33,7 +33,7 @@ export class List extends Component {
         <ShareDialog
           isOpen={this.state.open}
           onCancel={this.handleDialogClose}
-          onSubmit={() => this.props.submit('addShare')}
+          onSubmit={this.props.submitForm}
           onFormSubmit={this.props.addShare}
         />
       </div>
@@ -44,7 +44,7 @@ export class List extends Component {
 List.defaultProps = {
   addShare: () => {},
   shares: [],
-  submit: () => {},
+  submitForm: () => {},
 };
 
 List.propTypes = {
@@ -52,7 +52,7 @@ List.propTypes = {
   shares: PropTypes.arrayOf(PropTypes.shape({
     name: PropTypes.string.isRequired,
   })),
-  submit: PropTypes.func,
+  submitForm: PropTypes.func,
 };
 
 export const mapStateToProps = ({ share }) => ({
@@ -63,4 +63,10 @@ export const mapDispatchToProps = dispatch => (
   bindActionCreators({ ...actionsCreators, submit }, dispatch)
 );
 
-export default connect(mapStateToProps, mapDispatchToProps)(List);
+export const mergeProps = (stateProps, dispatchProps) => ({
+  ...stateProps,
+  ...dispatchProps,
+  submitForm: () => dispatchProps.submit('addShare'),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps, mergeProps)(List);
